@@ -595,7 +595,11 @@ usb_send_data:
 	and a4, s1, a4
 
 	// Convert D+/D- into 2MHz outputs
+#ifdef CH32V003
 	li s1, ((0b0010<<(USB_PIN_DP*4)) | (0b0010<<(USB_PIN_DM*4)))
+#else
+	li s1, ((1<<(USB_PIN_DP*4)) | (1<<(USB_PIN_DM*4)))
+#endif
 	or a4, s1, a4
 
 	li s1, (1<<USB_PIN_DP) | (1<<(USB_PIN_DM+16))

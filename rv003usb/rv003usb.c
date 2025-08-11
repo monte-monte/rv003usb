@@ -63,14 +63,18 @@ void usb_setup()
 	{
 		RCC->APB2PCENR |= RCC_APB2Periph_GPIOC | RCC_APB2Periph_TIM1;
 
-		GPIOC->CFGLR = (GPIO_Speed_50MHz | GPIO_CNF_OUT_PP)<<(4*0) |
-			           (GPIO_Speed_50MHz | GPIO_CNF_OUT_PP_AF)<<(4*3) | // PC3 = T1C3
-			           (GPIO_Speed_50MHz | GPIO_CNF_OUT_PP_AF)<<(4*4) |
-			           (GPIO_Speed_50MHz | GPIO_CNF_OUT_PP)<<(4*2);
+		GPIOC->CFGLR = (GPIO_CFGLR_OUT_50Mhz_PP)<<(4*0) |
+			           (GPIO_CFGLR_OUT_50Mhz_AF_PP)<<(4*3) | // PC3 = T1C3
+			           (GPIO_CFGLR_OUT_50Mhz_AF_PP)<<(4*4) |
+			           (GPIO_CFGLR_OUT_50Mhz_PP)<<(4*2);
 
 		// PC4 is MCO (for watching timing)
 		GPIOC->CFGLR &= ~(GPIO_CFGLR_MODE4 | GPIO_CFGLR_CNF4);
+#ifdef CH32V003
 		GPIOC->CFGLR |= GPIO_CFGLR_CNF4_1 | GPIO_CFGLR_MODE4_0 | GPIO_CFGLR_MODE4_1;
+#else
+		GPIOC->CFGLR |= GPIO_CFGLR_CNF4_1 | GPIO_CFGLR_MODE4_0;
+#endif
 		RCC->CFGR0 = (RCC->CFGR0 & ~RCC_CFGR0_MCO) | RCC_CFGR0_MCO_SYSCLK;
 
 		// PWM is used for debug timing. 
@@ -79,6 +83,7 @@ void usb_setup()
 		// Auto Reload - sets period
 		TIM1->ATRLR = 0xffff;
 
+#ifdef CH32V003
 		// Reload immediately
 		TIM1->SWEVGR |= TIM_UG;
 
@@ -96,6 +101,25 @@ void usb_setup()
 		
 		// Enable TIM1
 		TIM1->CTLR1 |= TIM_CEN;
+#else
+		// Reload immediately
+		TIM1->SWEVGR |= TIM1_SWEVGR_UG;
+
+		// Enable CH4 output, positive pol
+		TIM1->CCER |= TIM1_CCER_CC3E | TIM1_CCER_CC3NP;
+
+		// CH2 Mode is output, PWM1 (CC1S = 00, OC1M = 110)
+		TIM1->CHCTLR2 |= TIM1_CHCTLR2_OC3M_2 | TIM1_CHCTLR2_OC3M_1;
+
+		// Set the Capture Compare Register value to 50% initially
+		TIM1->CH3CVR = 2;
+		
+		// Enable TIM1 outputs
+		TIM1->BDTR |= TIM1_BDTR_MOE;
+		
+		// Enable TIM1
+		TIM1->CTLR1 |= TIM1_CTLR1_CEN;
+#endif
 	}
 #endif
 
@@ -109,7 +133,7 @@ void usb_setup()
 			) )) )
 		 |
 #ifdef USB_PIN_DPU
-		(GPIO_Speed_50MHz | GPIO_CNF_OUT_PP)<<(4*USB_PIN_DPU) |
+		(GPIO_CFGLR_OUT_50Mhz_PP)<<(4*USB_PIN_DPU) |
 #endif
 		(GPIO_Speed_In | GPIO_CNF_IN_PUPD)<<(4*USB_PIN_DP) | 
 		(GPIO_Speed_In | GPIO_CNF_IN_PUPD)<<(4*USB_PIN_DM);
