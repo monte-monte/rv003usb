@@ -1,7 +1,7 @@
 all : flash
 
 TARGET:=demo_hidapi
-CH32FUN:=../ch32v003fun/ch32fun
+CH32FUN:=../ch32fun/ch32fun
 TARGET_MCU:=CH32V003
 SERIAL_UTILITY?=../serial_number_utility
 ADDITIONAL_C_FILES+=../rv003usb/rv003usb.S ../rv003usb/rv003usb.c
