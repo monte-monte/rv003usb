@@ -79,7 +79,7 @@ static const uint8_t special_hid_desc[] = {
     HID_REPORT_ID    ( 0xad )
     HID_USAGE        ( 0xff ),
     HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
-    HID_REPORT_COUNT_N ( 4096+127, 2 ),
+    HID_REPORT_COUNT_N ( 4095, 2 ), // Maximum allowed size in windows and macos
     HID_REPORT_ID    ( 0xae )
     HID_USAGE        ( 0xff ),
     HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
