@@ -53,7 +53,7 @@ static const uint8_t special_hid_desc[] = {
   HID_USAGE      ( 0xff ), // Needed?
   HID_REPORT_SIZE ( 8 ),
   HID_COLLECTION ( HID_COLLECTION_APPLICATION ),
-    HID_REPORT_COUNT ( 8 ),
+    HID_REPORT_COUNT ( 7 ),
     HID_REPORT_ID    ( 0xa8 )
     HID_USAGE        ( 0xff ),
     HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),

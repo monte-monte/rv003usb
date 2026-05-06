@@ -58,40 +58,40 @@ static const uint8_t special_hid_desc[] = {
   HID_USAGE      ( 0xff ), // Needed?
   HID_REPORT_SIZE ( 8 ),
   HID_COLLECTION ( HID_COLLECTION_APPLICATION ),
-    HID_REPORT_COUNT ( 8 ),
+    HID_REPORT_COUNT ( 7 ),
     HID_REPORT_ID    ( 0xa8 )
     HID_USAGE        ( 0xff ),
-    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ) ,
+    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
     HID_REPORT_COUNT ( 127 ),
     HID_REPORT_ID    ( 0xaa )
     HID_USAGE        ( 0xff ),
-    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ) ,
+    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
     HID_REPORT_COUNT_N ( 1024+127, 2 ),
     HID_REPORT_ID    ( 0xab )
     HID_USAGE        ( 0xff ),
-    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ) ,
+    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
     HID_REPORT_COUNT_N ( 2048+127, 2 ),
     HID_REPORT_ID    ( 0xac )
     HID_USAGE        ( 0xff ),
-    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ) ,
+    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
 #if CH32V004 || CH32V005 || CH32V006 || CH32V007
     HID_REPORT_COUNT_N ( 3072+127, 2 ),
     HID_REPORT_ID    ( 0xad )
     HID_USAGE        ( 0xff ),
-    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ) ,
+    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
     HID_REPORT_COUNT_N ( 4096+127, 2 ),
     HID_REPORT_ID    ( 0xae )
     HID_USAGE        ( 0xff ),
-    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ) ,
+    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
 #if CH32V006 || CH32V007
     HID_REPORT_COUNT_N ( 5120+127, 2 ),
     HID_REPORT_ID    ( 0xaf )
     HID_USAGE        ( 0xff ),
-    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ) ,
+    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
     HID_REPORT_COUNT_N ( 6144+127, 2 ),
     HID_REPORT_ID    ( 0xb0 )
     HID_USAGE        ( 0xff ),
-    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ) ,
+    HID_FEATURE      ( HID_DATA | HID_ARRAY | HID_ABSOLUTE ),
 #endif
 #endif
   HID_COLLECTION_END
