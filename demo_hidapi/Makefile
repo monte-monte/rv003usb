@@ -5,7 +5,7 @@ CH32FUN:=../ch32fun/ch32fun
 # TARGET_MCU:=CH32V003
 TARGET_MCU:=CH32V006
 
-ADDITIONAL_C_FILES+=../rv003usb/rv003usb.S ../rv003usb/rv003usb.c
+ADDITIONAL_C_FILES+=../rv003usb/rv003usb_full_gpio.S ../rv003usb/rv003usb.c
 EXTRA_CFLAGS:=-I../lib -I../rv003usb
 
 include $(CH32FUN)/ch32fun.mk
